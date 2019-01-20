@@ -17,9 +17,9 @@ int main()
 		fgets(word[i], sizeof(word[i]), fp);
 		++i;
 	}
+	printf("»¶Ó­ÐÀÉÍ¡¶ÑÌ»ðÀïµÄ³¾°£¡·\n");
 	mciSendString("open ./test.mp3 alias yhldca", NULL, 0, NULL);
 	mciSendString("play yhldca repeat", NULL, 0, NULL);
-	
 	int col = 0;
 	while (col < 100)
 	{
