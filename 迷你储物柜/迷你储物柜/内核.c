@@ -1,5 +1,7 @@
 #include"Locker.h"
 #include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
 //界面
 void Interface()
 {
@@ -26,4 +28,23 @@ void Interface()
 		printf("—");
 	}
 	printf("\n");
+}
+
+//随机生成密码
+char buff[8] = { 0 };
+char* Generate_Password()
+{
+	srand((int)time(0));
+	//int arr[8] = { 0 };
+	for (int temp = 0; temp < 8; ++temp)
+	{
+		buff[temp] = '0' + rand() % 9;
+	}
+	
+	return buff;
+}
+
+void Lock()
+{
+
 }

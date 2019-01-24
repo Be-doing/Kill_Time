@@ -3,7 +3,9 @@
 //界面
 void Interface();
 //随机生成密码
-void Generate_Password();
+char* Generate_Password();
+//柜子锁存
+void Lock();
 //打开柜子
 void Open();
 //验证柜子

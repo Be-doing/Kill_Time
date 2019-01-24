@@ -4,5 +4,7 @@
 main()
 {
 	Interface();
+	char* temp = Generate_Password();
+	printf("%s\n",temp);
 	system("pause");
 }
