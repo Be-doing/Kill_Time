@@ -1,11 +1,11 @@
 #pragma once
 //sscanf和sprintf的区别
 //界面
-void Interface();
+int Interface();
 //随机生成密码
 char* Generate_Password();
 //柜子锁存
-void Lock();
+char* Lock();
 //打开柜子
 void Open();
 //验证柜子
