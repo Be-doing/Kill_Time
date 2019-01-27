@@ -1,6 +1,25 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<string.h>
+#include<Windows.h>
+void Log_in()
+{
+	printf("正在登录……0%%\n");
+	Sleep(1111);
+	printf("正在登录……10%%\n");
+	Sleep(1111);
+	printf("正在登录……25%%\n");
+	Sleep(1111);
+	printf("正在登录……50%%\n");
+	Sleep(1111);
+	printf("正在登录……66%%\n");
+	Sleep(1111);
+	printf("正在登录……79%%\n");
+	Sleep(1111);
+	printf("正在登录……90%%\n");
+	Sleep(1111);
+	printf("正在登录……100%%\n");
+}
 void Game()
 {
 	char name[1024] = { 0 };
@@ -20,7 +39,8 @@ void Game()
 			break;
 		}
 	}
-	printf("%s",name);
+	printf("您的ID是%s\n",name);
+	Log_in();
 }
 void Start()
 {
