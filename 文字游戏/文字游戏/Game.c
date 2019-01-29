@@ -6,6 +6,29 @@
 char name[1024] = { 0 };
 char* sex[1];
 char name2[1024] = { 0 };
+void startGame()
+{
+	printf("请为%s穿上衣服吧",name2);
+	printf(" ");
+}
+void getname()
+{
+	getchar();
+	while (1)
+	{
+		gets_s(name2, 1023);
+		if (strlen(name2) > 9 || name2[0] == '\0')
+		{
+			memset(name2, 0, 1023);
+			printf("非法输入，请重新输入！\n");
+		}
+		else
+		{
+			break;
+		}
+	}
+	startGame();
+}
 //
 void Choice()
 {
@@ -23,7 +46,8 @@ again2:
 				printf("为构建和谐的社会主义核心价值观，请重新选择\n");
 				goto again2;
 			}
-			printf("请为您的女朋友取一个名字\n");
+			printf("请为您的女朋友取一个名字：");
+			getname();
 		}
 		else if (choice == 'B')
 		{
@@ -32,7 +56,8 @@ again2:
 				printf("为构建和谐的社会主义核心价值观，请重新选择\n");
 				goto again2;
 			}
-			printf("请为您的男朋友取一个名字\n");
+			printf("请为您的男朋友取一个名字：");
+			getname();
 		}
 		else if (choice != 'A' || choice != 'B')
 		{
@@ -82,7 +107,6 @@ void Game()
 			else if (choice == 'B')
 			{
 				sex[0] = "女";
-				
 				break;
 			}
 			else
