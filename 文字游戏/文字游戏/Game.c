@@ -34,6 +34,7 @@ void Choice()
 {
 	getchar();
 again2:
+		printf("＜（＾－＾）＞＜（＾－＾）＞＜（＾－＾）＞\n");
 		printf("为了引导正确的取向观，请选择您的对象：\n");
 		printf("A—女朋友，B—男朋友");
 		printf("您的选择是：");
@@ -86,6 +87,7 @@ void Game()
 	getchar();
 	while (1)
 	{
+		printf("＜（＾－＾）＞＜（＾－＾）＞＜（＾－＾）＞\n");
 		printf("您好，请创建您的ID(小于5个汉字，可以是字母数字汉字)：");
 		gets_s(name,1023);
 		if (strlen(name) > 9 || name[0] == '\0')
@@ -117,6 +119,7 @@ void Game()
 			}
 		}
 	}
+	printf("＜（＾－＾）＞＜（＾－＾）＞＜（＾－＾）＞\n");
 	printf("您的角色是：%s，您的性别是：%s\n",name,sex[0]);
 	//登录
 	Log_in();
@@ -127,7 +130,11 @@ void Start()
 	printf("欢迎进入模拟情侣游戏！\n");
 again:
 	{
-		printf("输入 1 进入游戏，输入 0 退出游戏。请输入您的选择：");
+		printf("＜（＾－＾）＞＜（＾－＾）＞＜（＾－＾）＞\n");
+		printf("——————＞1 进入游戏<——————\n");
+		printf("——————＞0 退出游戏<——————\n");
+		printf("＜（＾－＾）＞＜（＾－＾）＞＜（＾－＾）＞\n");
+		printf("请输入您的选择：");
 		scanf("%c", &choice);
 		if (choice == '1')
 		{
