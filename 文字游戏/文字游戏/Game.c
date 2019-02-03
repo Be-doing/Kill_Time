@@ -8,8 +8,16 @@ char* sex[1];
 char name2[1024] = { 0 };
 void startGame()
 {
-	printf("请为%s穿上衣服吧",name2);
-	printf(" ");
+	printf("＜（＾－＾）＞＜（＾－＾）＞＜（＾－＾）＞\n");
+	printf("请为%s穿上衣服吧\n",name2);
+	if (sex[0] == "男")
+	{
+		printf(" A：萝莉装		B：女仆装\nC：睡衣		D：休闲装\n");
+	}
+	else
+	{
+		printf(" A：正装		B：不穿\nC：睡衣		D：休闲装\n");
+	}
 }
 void getname()
 {
