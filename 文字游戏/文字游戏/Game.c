@@ -6,6 +6,16 @@
 char name[1024] = { 0 };
 char* sex[1];
 char name2[1024] = { 0 };
+int judge(char choice)//输入判定
+{
+	gerchar();
+	if (choice > 'D' || choice < 'A')
+	{
+		printf("您的输入非法，请重新输入！\n");
+		return 1;
+	}
+	return 0;
+}
 void startGame()
 {
 	char choice = 0;
