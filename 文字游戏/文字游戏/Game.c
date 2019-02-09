@@ -20,24 +20,32 @@ void startGame()
 {
 	char choice = 0;
 	printf("＜（＾－＾）＞＜（＾－＾）＞＜（＾－＾）＞\n");
-	printf("请为%s穿上衣服吧\n",name2);
-	if (sex[0] == "男")
+	while (1)
 	{
-		printf(" A：萝莉装		B：女仆装\nC：睡衣		D：休闲装\n");
-		printf("请选择：");
-		scanf("%c", &choice);
-	}
-	else
-	{
-		printf(" A：正装		B：不穿\nC：睡衣		D：休闲装\n");
-		printf("请选择：");
-		scanf("%c", &choice);
-		if (choice == 'C')
+		printf("请为%s穿上衣服吧\n", name2);
+		if (sex[0] == "男")
 		{
-			printf("不能让对象光着身子哦~请重新选择：");
+			printf(" A：萝莉装		B：女仆装\nC：睡衣		D：休闲装\n");
+			printf("请选择：");
 			scanf("%c", &choice);
 		}
+		else
+		{
+			printf(" A：正装		B：不穿\nC：睡衣		D：休闲装\n");
+			printf("请选择：");
+			scanf("%c", &choice);
+			if (choice == 'C')
+			{
+				printf("不能让对象光着身子哦~请重新选择：");
+				scanf("%c", &choice);
+			}
+		}
+		if (judge(choice))
+		{
+			break;
+		}
 	}
+	
 }
 void getname()
 {
