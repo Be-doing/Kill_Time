@@ -1,4 +1,6 @@
 #include<assert.h>
+#include<stdio.h>
+#include<stdlib.h>
 //顺序表
 typedef struct 
 {
@@ -107,7 +109,7 @@ int GetHeight(TreeNode* root)
 {
 	if (root == NULL)
 	{
-		return;
+		return 0;
 	}
 	return GetHeight(root->left) > GetHeight(root->right)? GetHeight(root->left) : GetHeight(root->right) + 1;
 }
@@ -134,7 +136,7 @@ TreeNode* Find(TreeNode* root, int val)
 	{
 		if (Find(root->right, val))
 		{
-			return Find(root->right);
+			return Find(root->right,val);
 		}
 		else
 		{
@@ -143,38 +145,43 @@ TreeNode* Find(TreeNode* root, int val)
 	}
 	return TempNode;
 }
-TreeNode CreateTree(int preorder[], int inorder[], int size)
-{
 
-}
-typedef int HeapData;
 typedef struct Heap
 {
-	HeapData arr[100];
+	int arr[100];
 	int size;
 }Heap;
-
-void Adjustdown(HeapData arr[], int size, int root)
+//向下调整
+void Adjustdown(int arr[], int size, int root)
 {
-	assert(root);
 	int left = root * 2 + 1;
 	int right = root * 2 + 2;
-	int min = left;
-	if (left > size)
+	int max = left;
+	if (left >= size)
 	{
 		return;
 	}
-	if (right <size && arr[right] < arr[left])
+	if (right <size && arr[right] > arr[left])
 	{
-		right = min;
+		 max = right;
 	}
-	if (arr[root] < arr[min])
+	if (arr[root] >= arr[max])
 	{
 		return;
 	}
-	HeapData temp = arr[root];
-	arr[root] = arr[min];
-	arr[min] = temp;
-	//root =min
-	Adjustdown(arr, size, min);
+	int temp = arr[root];
+	arr[root] = arr[max];
+	arr[max] = temp;
+	//root =max
+	Adjustdown(arr, size, max);
+}
+ //建堆
+void CreateHeap(int arr[], int size)
+{
+	int level = (size -2) / 2;
+	while (level >= 0)
+	{
+		Adjustdown(arr, size, level);
+		--level;
+	}
 }
