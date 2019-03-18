@@ -151,3 +151,25 @@ typedef struct Heap
 	int arr[100];
 	int size;
 }Heap;
+TreeNode* FindNode(TreeNode* root, int val)
+{
+	if (root->val != val)
+	{
+		return;
+	}
+	if (root->val == val)
+	{
+		return root;
+	}
+	TreeNode* node = FindNode(root->left, val);
+	if (node == NULL)
+	{
+		TreeNode* node2 = FindNode(root->right, val);
+		if (node2 == NULL)
+		{
+			return NULL;
+		}
+		return node2;
+	}
+	return node;
+}
