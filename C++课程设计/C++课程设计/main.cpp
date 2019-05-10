@@ -62,38 +62,46 @@ void Beginning() {
 	GetConsoleScreenBufferInfo(handle_out, &csbi);          //获得窗口缓冲区信息
 	int x, y;
 	srand((unsigned)time(0));
-	for (int i = 0; i < A; i++) for (int j = 0; j < B; j++) {
-		map[i][j] = ' ';
-		flag[i][j] = 0;
-		slect[i][j] = 0;
-	}
-	while (BoomTotalNum) {
+	for (int i = 0; i < A; i++) 
+		for (int j = 0; j < B; j++)
+		{
+			map[i][j] = ' ';
+			flag[i][j] = 0;
+			slect[i][j] = 0;
+		}
+	while (BoomTotalNum) 
+	{
 		x = rand() % A;
 		y = rand() % B;
-		if (map[x][y] == ' ') {
+		if (map[x][y] == ' ')
+		{
 			map[x][y] = '@';
 			BoomTotalNum--;
 		}
 	}
 	SetConsoleTextAttribute(handle_out, FORE_GREEN);
-	for (int i = 0; i < A; i++) {
-		for (int j = 0; j < B; j++) printf("█");
-		printf("\n");
+	for (int i = 0; i < A; i++) 
+	{
+		for (int j = 0; j < B; j++)
+		{
+			cout << "█";
+		}
+		cout << endl;
 	}
 	position(floaty * 2, floatx);
 	SetConsoleTextAttribute(handle_out, FORE_RED);
-	printf("");	//光标位置
+	cout << "";	//光标位置
 	position(44, 9);
-	printf("扫雷模式");
+	cout << "扫雷模式";
 	position(44, 5);
-	printf("剩余雷数：%d ", C - flagnum);
+	cout << "剩余雷数： " << C - flagnum;
 	SetConsoleTextAttribute(handle_out, FORE_GREEN);
 	position(5, 22);
-	printf("按“空格”切换模式");
+	cout << "按“空格”切换模式";
 	position(5, 23);
-	printf("按“Enter”确认");
+	cout << "按“Enter”确认";
 	position(5, 24);
-	printf("按“方向键”选择方块");
+	cout << "按“方向键”选择方块";
 
 }
 
@@ -278,6 +286,7 @@ void Open() {
 }
 
 int main() {
+	system("color 77");
 	freopen("排名.txt", "r", stdin);
 Relife:	//重玩处
 	HANDLE handle_out = GetStdHandle(STD_OUTPUT_HANDLE);    //获得标准输出设备句柄  
