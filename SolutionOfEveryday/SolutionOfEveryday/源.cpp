@@ -1,30 +1,22 @@
 #include"Solution.h"
-
-//int test2()
-//{
-//	Solution2 s;
-//	return s.Programe1();
-//}
-//
-//
-//int main()
-//{
-//	int res = test2();
-//	printf("%d\n", res);
-//	system("pause");//1 2 3 2 2 1 2 3 4 6 9
-//	return 0;
-//}'
 void test1()
 {
 	Day1 solution;
 	//solution.SolutionOne();
-
 	solution.SolutionTwo();
 	
 }
+
+void test2()
+{
+	Day2 solution;
+	int res = solution.SolutionOne();
+	cout << res << endl;
+}
+
 int main()
 {
-	test1();
+	test2();
 	system("pause");
 	return 0;
 }

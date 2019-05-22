@@ -18,8 +18,8 @@ using namespace std;
 //	而如果方案为 :
 //	team1 : {2, 5, 8}, team2 : {1, 5, 5}, 这时候水平值总和为10.
 //	没有比总和为10更大的方案, 所以输出10.
-#define TEAMNUMMAX 500000
-#define PERSONLEVEL 1000000000
+#define IN_LEN_MAX 500000
+#define IN_NUM_MAX 1000000000
 #include<algorithm>
 class Day1
 {
@@ -45,7 +45,7 @@ public:
 
 		cout << "请输入队伍数量: ";
 		cin >> teamNum;
-		if (teamNum < 1 && teamNum > TEAMNUMMAX)
+		if (teamNum < 1 && teamNum > IN_LEN_MAX)
 		{
 			cout << "输入非法" << endl;
 			return false;
@@ -57,7 +57,7 @@ public:
 		{
 			cout << "选手[ " << i << " ] :";
 			cin >> personNum[i];
-			if (personNum[i] < 1 && personNum[i] > PERSONLEVEL)
+			if (personNum[i] < 1 && personNum[i] > IN_NUM_MAX)
 			{
 				cout << "输入非法" << endl;
 				return false;
@@ -105,66 +105,87 @@ public:
 		cout << res;
 	}
 };
-class Solution2
+class Day2
 {
 public:
-	int Programe1()
+		//1、把第一数取出，作为第一个序列的开始，与第二个数比较，确定递增或递减关系
+		//2、再把第二个数取出，作为第一个序列的第二个数。
+		//3、取出第三个数，第二个数比较，如果和第一个数关系相同，放入第一个序列否则重开一个序列。
+	int SolutionOne()
 	{
 		int num = 0;
-		printf("数字个数（数组长度）：");
 		scanf("%d", &num);
-		if (num < 1 || num > 100000)
+		if (num < 1 || num > IN_LEN_MAX)
 		{
 			printf("输入非法\n");
 			return -1;
 		}
 
 		//int num = 6;
-		int* arr = new int[num];
-		printf("输入数据（空格隔开）：");
+		int* arr = new int[num + 1];
 		for (int i = 0; i < num; ++i)
 		{
 			scanf("%d", &arr[i]);//1 2 3 2 2 1
-			if (arr[i] < 1 || arr[i] > 1000000000)
+			if (arr[i] < 1 || arr[i] > IN_NUM_MAX)
 			{
 				printf("输入非法\n");
 				return -1;
 			}
 		}
-
-		//int arr[6] = { 1,2,3,2,2, 1};
-		//只有一个数或者两个数的数组，要么递增要么递减
-		if (num == 1 || num == 2)
+		arr[num] = 0;
+		int flag = 0;
+		int count = 0;
+		while (flag < num)
 		{
-			return 1;
-		}
-
-
-		int flag = 1;		//标记每个子序列是递增的还是递减的
-		int count = 1;
-		//除上面的情况外,数组的长度是大于2的。
-		//如果一个数大于后面的数，flag置1，向后执行，否则++cout；flag置为2，向后执行否则++count
-		if (arr[0] < arr[1])
-		{
-			flag = 1;
-		}
-		else
-		{
-			flag = 2;
-		}
-		for (int i = 1; i < num; ++i)
-		{
-			if (flag == 2 && arr[i] < arr[i + 1])
+			if (arr[flag] < arr[flag + 1])
 			{
-				flag = 1;
+				while (flag < num && arr[flag] <= arr[flag + 1])
+				{
+					++flag;
+				}
 				++count;
+				++flag;
+			}//1 2 1 2 1 2 1 2 1
+			else if (arr[flag + 1] == arr[flag])
+			{
+				++flag;
 			}
-			else if (flag == 1 && arr[i] > arr[i + 1])
+			else //(arr[flag-1] > arr[flag])
 			{
-				flag = 2;
+				while (flag < num && arr[flag] >= arr[flag + 1])
+				{
+					++flag;
+				}
 				++count;
+				++flag;
 			}
 		}
 		return count;
+	}
+
+#include<iostream>
+#include<string>
+	using namespace std;
+	class Day2
+	{
+	public:
+		void SolutionTwo()
+		{
+			string strRes;
+			string strIn;
+			cin >> strIn;
+			while (cin >> strRes)
+			{
+				strIn = strRes + " " + strIn;
+			}
+			cout << strIn;
+		}
+	};
+
+	int main()
+	{
+		Day2 solution;
+		solution.SolutionTwo();
+		return 0;
 	}
 };
