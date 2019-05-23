@@ -12,11 +12,25 @@ void test2()
 	Day2 solution;
 	int res = solution.SolutionOne();
 	cout << res << endl;
-}
 
+	solution.SolutionTwo();
+}
+void test3()
+{
+	Day3 solution;
+	//solution.SolutionOne();
+
+	solution.SolutionTwo();
+}
+void test4()
+{
+	Day4 solution;
+	solution.SolutionTwo(7,2);
+}
 int main()
 {
-	test2();
+	test4();
+
 	system("pause");
 	return 0;
 }

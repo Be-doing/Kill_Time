@@ -3,6 +3,8 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include<stack>
+#include<algorithm>
 using namespace std;
 
 //牛牛举办了一次编程比赛, 参加比赛的有3*n个选手, 每个选手都有一个水平值a_i.现在要将这些选手进行组队, 一共组成n个队伍, 即每个队伍3人.牛牛发现队伍的水平值等于该队伍队员中第二高水平值。
@@ -26,19 +28,6 @@ class Day1
 public:
 	//思路，先将队伍的人数进行排序，选择最大的和第二大的数，加最小的数。同理一次选择
 	//最后加上每个队伍中间的数。
-	void Sort(vector<int>& v, size_t size)
-	{
-		for (size_t i = 1; i < size; ++i)
-		{
-			for (size_t j = 0; j < size - i; ++j)
-			{
-				if (v[j] < v[j + 1])
-				{
-					swap(v[j], v[j + 1]);
-				}
-			}
-		}
-	}
 	bool SolutionOne()
 	{
 		int teamNum = 2;
@@ -75,7 +64,6 @@ public:
 		cout << sum << endl;
 		return true;
 	}
-
 	//输入两个字符串，从第一字符串中删除第二个字符串中所有的字符。
 	//例如，输入”They are students.”和”aeiou”，则删除之后的第一个字符串变成”Thy r stdnts.”
 	void SolutionTwo()
@@ -105,6 +93,10 @@ public:
 		cout << res;
 	}
 };
+
+
+
+
 class Day2
 {
 public:
@@ -120,7 +112,6 @@ public:
 			printf("输入非法\n");
 			return -1;
 		}
-
 		//int num = 6;
 		int* arr = new int[num + 1];
 		for (int i = 0; i < num; ++i)
@@ -162,30 +153,116 @@ public:
 		}
 		return count;
 	}
-
-#include<iostream>
-#include<string>
-	using namespace std;
-	class Day2
+		//将一句话的单词进行倒置，标点不倒置。比如 I like beijing.经过函数后变为：beijing.like I
+		//每个测试输入包含1个测试用例： I like beijing.输入用例长度不超过100
+		//依次输出倒置之后的字符串, 以空格分割
+	void SolutionTwo()
 	{
-	public:
-		void SolutionTwo()
+		string strRes;
+		string strIn;
+		cin >> strIn;
+		while (cin >> strRes)
 		{
-			string strRes;
-			string strIn;
-			cin >> strIn;
-			while (cin >> strRes)
-			{
-				strIn = strRes + " " + strIn;
-			}
-			cout << strIn;
+			strIn = strRes + " " + strIn;
 		}
-	};
+		cout << strIn;
+	}
 
-	int main()
+};
+
+
+
+
+
+class Day3
+{
+public:
+	//读入一个字符串str，输出字符串str中的连续最长的数字串
+	//abcd12345ed125ss123456789
+	//123456789
+	int SolutionOne()
 	{
-		Day2 solution;
-		solution.SolutionTwo();
-		return 0;
+	}
+	//输入n个整数，输出出现次数大于等于数组长度一半的数。
+	//3 9 3 2 5 6 7 3 2 3 3 3
+	//3
+	void SolutionTwo()
+	{
+		string strRes;
+		string strIn;
+		cin >> strIn;
+		while (cin >> strRes)
+		{
+			strIn = strRes + " " + strIn;
+		}
+		cout << strIn;
+	}
+
+};
+
+
+
+
+
+
+class Day4
+{
+public:
+	void SolutionOne()
+	{
+		int A;
+		int B;
+
+		vector<int> v_in;
+		int num;
+		int i = 0;
+		while (i < 4)
+		{
+			cin >> num;
+			v_in.push_back(num);
+			++i;
+		}
+		A = (v_in[0] + v_in[2]) / 2;
+		B = v_in[2] - A;
+		if ((B - v_in[1]) == (v_in[3] - B))
+		{
+			cout << A << " " << B << " " << v_in[3] - B;
+		}
+		else
+		{
+			cout << "NO";
+		}
+	}
+	void  SolutionTwo(int num, int ra)
+	{
+		char re;
+		stack<char> result;
+		while (num >= ra)
+		{
+			int res = num % ra;
+			if (res > 9)
+			{
+				re = 17 + res - 10 + '0';
+			}
+			else
+			re = (res + '0');
+			num /= ra;
+			result.push(re);
+		}
+		if (num > 9)
+		{
+			re = 17 + num - 10 + '0';
+		}
+		else
+		{
+			re = (num + '0');
+		}
+		result.push(re);
+
+		while (!result.empty())
+		{
+			cout << result.top();
+			result.pop();
+		}
 	}
 };
