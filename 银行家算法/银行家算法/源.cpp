@@ -1,5 +1,6 @@
 #include <string.h>
 #include <iostream>
+#include<vector>
 using namespace std;
 
 
@@ -8,7 +9,18 @@ int ALL_RESOURCE[3] = { 9,3,6 };//各种资源的数目总和
 
 #define PROCESS 4
 #define SPECIENUM 3
-
+void Print(vector<int> v, size_t size)
+{
+	for (size_t i = 0; i < size; ++i)
+	{
+		cout << "p[ " << v[i] << " ]";
+		if (i != size - 1)
+		{
+			cout << "->";
+		}
+	}
+	cout << endl;
+}
 class Bank
 {
 public:
@@ -86,7 +98,7 @@ public:
 		{
 			FINISH[i] = false;
 		}
-			
+		vector<int> safepro;
 		for (j = 0; j < SPECIENUM; j++)
 		{
 			WORK = available_[j];
@@ -97,15 +109,18 @@ public:
 				{
 					WORK = WORK + allocation_[i][j];
 					FINISH[i] = true;
+					safepro.push_back(i);
 					i = 0;
 				}
 				else
 				{
+
 					i++;
 				}
 			} while (i < PROCESS);
 
 			for (i = 0; i < PROCESS; i++)
+			{
 				if (FINISH[i] == false)
 				{
 					cout << endl;
@@ -113,10 +128,13 @@ public:
 					cout << endl;
 					return false;
 				}
-			return true;
+			}
 		}
 		cout << endl;
 		cout << " 经安全性检查，系统安全，本次分配成功。" << endl;
+		size_t size = safepro.size();
+		cout << "安全序列为：";
+		Print(safepro, size);//打印安全序列
 		cout << endl;
 		return false;
 	}
@@ -136,6 +154,7 @@ public:
 				{
 					cout << " 输入的进程号不存在，重新输入!" << endl;
 				}
+				save.push_back(i);
 			}
 			cout << " 请输入进程P" << i << "申请的资源数:" << endl;
 			for (j = 0; j < SPECIENUM; j++)
@@ -177,6 +196,7 @@ public:
 	int allocation_[PROCESS][SPECIENUM] = { {1,0,0},{6,1,2},{2,1,1},{0,0,2} };// PROCESS个进程SPECIENUM类资源已经分配
 	int need_[PROCESS][SPECIENUM] = { 0 };//需求
 	int request[SPECIENUM] = { 0 };//请求
+	vector<int> save;
 };
 
 int main()
@@ -204,6 +224,9 @@ int main()
 	}
 	bank.Show();
 	bank.SetBank();
+	size_t size = bank.save.size();
+	cout << "安全性序列为：";
+	Print(bank.save, size);
 	system("pause");
 	return 0;
 }
