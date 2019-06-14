@@ -296,9 +296,9 @@ Relife:	//重玩处，goto语句。
 	GetConsoleScreenBufferInfo(handle_out, &csbi);          //获得窗口缓冲区信息
 	Hide();		//隐藏光标
 	Beginning();//初始化地图
-	a = GetTickCount();
+	a = GetTickCount();//计算扫雷用时
 	while (1) {
-		if (kbhit() != 0) {
+		if (kbhit() != 0) {//判断是否有输入，没有任何输入则休眠10秒
 			spare = getch();
 
 			//按其他
